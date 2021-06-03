@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
 func main() {
-	var nome = "Anderson" //não precisa dizer o tipo pq o GO faz uma inferência
-	var versao float32 = 1.1
-	fmt.Println("Olá, sr.", nome)
+	//não precisa atribuir a palavra var para variavel basta apenas :=
+	nome := "Anderson"
+	versao := 1.1
+	idade := 24
+	fmt.Println("Olá, sr.", nome, "sua idade é", idade)
 	fmt.Println("Este programa está na versão", versao)
-
-	fmt.Println("O tipo da varíavel nome é:", reflect.TypeOf(nome))
-
 }
