@@ -16,6 +16,23 @@ func main() {
 
 	var comando int
 	fmt.Scan(&comando)
-	fmt.Println(comando)
+	fmt.Println("O comando escolhido foi ", comando)
+
+	if comando == 1 {
+		fmt.Println("Monitorando...")
+	} else if comando == 2 {
+		fmt.Println("Exibindo Logs...")
+	} else if comando == 0 {
+		fmt.Println("Sair do programa")
+	} else {
+		fmt.Println("Não conheço este comando")
+	}
+
+	//No Go, além de n precisar de parenteses, a clausula if apenas será efetiva se retornar um valor booleano
+	maiordeidade := true
+
+	if maiordeidade {
+		fmt.Println("ok")
+	}
 
 }
