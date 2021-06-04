@@ -2,46 +2,31 @@ package main
 
 import (
 	"fmt"
-	//"net/http"
+	"net/http"
 	"os"
 )
 
 func main() {
-	// exibeIntroducao()
-	// exibeMenu()
+	exibeIntroducao()
 
-	//nome, idade := nomeEIdade() //declaracao de funcao com mais de uma variavel
-	nome, _ := nomeEIdade() //caso deseje ignorar um dos dados retornados, o Go identifica o underline '_' como dado vazio
+	for { //Em Go nao existe While, logo para se realizar um loop usa-se o for (que se usado sem parâmetros roda infinitas vezes até escolher parar)
+		exibeMenu()
+		comando := comandoLido()
 
-	fmt.Println(nome)
-
-	comando := comandoLido()
-
-	switch comando {
-	case 0:
-		fmt.Println("Sair do programa")
-		os.Exit(0) //indicar ao SO para sair com seguranca
-	case 1:
-		monitoramento()
-	case 2:
-		fmt.Println("Exibindo Logs...")
-	default:
-		fmt.Println("Não conheço este comando")
-		os.Exit(-1) //indicar ao SO que foi um erro n esperado
+		switch comando {
+		case 0:
+			fmt.Println("Sair do programa")
+			os.Exit(0) //indicar ao SO para sair com seguranca
+		case 1:
+			monitoramento()
+		case 2:
+			fmt.Println("Exibindo Logs...")
+		default:
+			fmt.Println("Não conheço este comando")
+			os.Exit(-1) //indicar ao SO que foi um erro n esperado
+		}
 	}
 
-}
-
-//Funcoes que retornam mais de um dado
-//1 - Devem ser daclarados os tipos de variáveis que serão retornados
-//2 - A declaração dos tipos devem estar entre parenteses
-//3 - retorne na ordem que declarou os tipos de retorno
-
-func nomeEIdade() (string, int) {
-	nome := "Anderson"
-	idade := 24
-
-	return nome, idade
 }
 
 func exibeIntroducao() {
@@ -66,6 +51,12 @@ func comandoLido() int { //caso seja uma funcao que retorne algum dado, seu tipo
 
 func monitoramento() {
 	fmt.Println("Monitorando...")
-	//site := "https://www.alura.com.br/"
-	//resp, err := http.Get(site)
+	site := "https://www.alura.com.br/"
+	resp, _ := http.Get(site)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site:", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
+	}
 }
