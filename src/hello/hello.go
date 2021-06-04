@@ -51,6 +51,12 @@ func comandoLido() int { //caso seja uma funcao que retorne algum dado, seu tipo
 
 func monitoramento() {
 	fmt.Println("Monitorando...")
+	var sites [4]string // Array em Go tem que ter tamanho pre definido
+	sites[0] = "https://www.alura.com.br/"
+	sites[1] = "https://conductor.com.br/"
+
+	fmt.Println(sites)
+
 	site := "https://www.alura.com.br/"
 	resp, _ := http.Get(site)
 
