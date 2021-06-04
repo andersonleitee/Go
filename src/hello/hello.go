@@ -18,21 +18,17 @@ func main() {
 	fmt.Scan(&comando)
 	fmt.Println("O comando escolhido foi ", comando)
 
-	if comando == 1 {
-		fmt.Println("Monitorando...")
-	} else if comando == 2 {
-		fmt.Println("Exibindo Logs...")
-	} else if comando == 0 {
+	switch comando {
+	case 0:
 		fmt.Println("Sair do programa")
-	} else {
+	case 1:
+		fmt.Println("Monitorando...")
+	case 2:
+		fmt.Println("Exibindo Logs...")
+	default:
 		fmt.Println("Não conheço este comando")
 	}
 
-	//No Go, além de n precisar de parenteses, a clausula if apenas será efetiva se retornar um valor booleano
-	maiordeidade := true
-
-	if maiordeidade {
-		fmt.Println("ok")
-	}
+	//Não precisa usar o break em Go
 
 }
