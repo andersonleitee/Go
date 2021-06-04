@@ -7,10 +7,11 @@ import (
 )
 
 func main() {
-	exibeIntroducao()
+	//exibeIntroducao()
+	exibeNomes()
 
 	for { //Em Go nao existe While, logo para se realizar um loop usa-se o for (que se usado sem parâmetros roda infinitas vezes até escolher parar)
-		exibeMenu()
+		//exibeMenu()
 		comando := comandoLido()
 
 		switch comando {
@@ -65,4 +66,16 @@ func monitoramento() {
 	} else {
 		fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
 	}
+}
+
+func exibeNomes() { //Ao declarar Slice, n precisa definir seu tamanho
+	nomes := []string{"Anderson", "Breno", "Luana", "Catarina"} //Declarando um Slice (tipo abstrato de array) em Go
+	fmt.Println(nomes)
+	fmt.Println("O tamanho do slice é", len(nomes), "e a capacidade é de", cap(nomes))
+
+	nomes = append(nomes, "Joao")
+	//Ao adicionar um item, o Go duplica meu Slice
+
+	fmt.Println(nomes)
+	fmt.Println("O tamanho do slice é", len(nomes), "e a capacidade é de", cap(nomes))
 }
