@@ -7,11 +7,10 @@ import (
 )
 
 func main() {
-	//exibeIntroducao()
-	exibeNomes()
+	exibeIntroducao()
 
 	for { //Em Go nao existe While, logo para se realizar um loop usa-se o for (que se usado sem parâmetros roda infinitas vezes até escolher parar)
-		//exibeMenu()
+		exibeMenu()
 		comando := comandoLido()
 
 		switch comando {
@@ -52,30 +51,17 @@ func comandoLido() int { //caso seja uma funcao que retorne algum dado, seu tipo
 
 func monitoramento() {
 	fmt.Println("Monitorando...")
-	var sites [4]string // Array em Go tem que ter tamanho pre definido
-	sites[0] = "https://www.alura.com.br/"
-	sites[1] = "https://conductor.com.br/"
+	sites := []string{"https://www.alura.com.br/", "https://conductor.com.br/"}
 
-	fmt.Println(sites)
+	for i, site := range sites { //Percorrendo slice com for usando o range
+		resp, _ := http.Get(sites[i])
 
-	site := "https://www.alura.com.br/"
-	resp, _ := http.Get(site)
+		if resp.StatusCode == 200 {
+			fmt.Println("Site:", site, "foi carregado com sucesso!")
+		} else {
+			fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
+		}
 
-	if resp.StatusCode == 200 {
-		fmt.Println("Site:", site, "foi carregado com sucesso!")
-	} else {
-		fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
 	}
-}
 
-func exibeNomes() { //Ao declarar Slice, n precisa definir seu tamanho
-	nomes := []string{"Anderson", "Breno", "Luana", "Catarina"} //Declarando um Slice (tipo abstrato de array) em Go
-	fmt.Println(nomes)
-	fmt.Println("O tamanho do slice é", len(nomes), "e a capacidade é de", cap(nomes))
-
-	nomes = append(nomes, "Joao")
-	//Ao adicionar um item, o Go duplica meu Slice
-
-	fmt.Println(nomes)
-	fmt.Println("O tamanho do slice é", len(nomes), "e a capacidade é de", cap(nomes))
 }
