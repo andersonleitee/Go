@@ -4,7 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time" //pacote time
 )
+
+const monitoramentos = 5
+const delay = 10
 
 func main() {
 	exibeIntroducao()
@@ -40,28 +44,38 @@ func exibeMenu() {
 	fmt.Println("1- Iniciar monitoramento")
 	fmt.Println("2- Receber os Logs")
 	fmt.Println("0- Sair do monitoramento")
+	fmt.Println("")
 }
 
 func comandoLido() int { //caso seja uma funcao que retorne algum dado, seu tipo se declara após declaracao da func
 	var comandoLido int
 	fmt.Scan(&comandoLido)
 	fmt.Println("O comando escolhido foi ", comandoLido)
+	fmt.Println("")
 	return comandoLido
 }
 
 func monitoramento() {
 	fmt.Println("Monitorando...")
-	sites := []string{"https://www.alura.com.br/", "https://conductor.com.br/"}
+	sites := []string{"https://www.alura.com.br/", "https://conductor.com.br/", "https://random-status-code.herokuapp.com/"}
 
-	for i, site := range sites { //Percorrendo slice com for usando o range
-		resp, _ := http.Get(sites[i])
-
-		if resp.StatusCode == 200 {
-			fmt.Println("Site:", site, "foi carregado com sucesso!")
-		} else {
-			fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
+	for i := 0; i < monitoramentos; i++ {
+		for i, site := range sites { //Percorrendo slice com for usando o range
+			fmt.Println("Site ", i+1, ":", site)
+			testaSite(site)
 		}
-
+		time.Sleep(delay * time.Second) //declarando a duração do delay
+		fmt.Println("")
 	}
+	fmt.Println("")
+}
 
+func testaSite(site string) {
+	resp, _ := http.Get(site)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site:", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site:", site, "esta com problemas. Status code:", resp.StatusCode)
+	}
 }
