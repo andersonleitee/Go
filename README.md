@@ -29,7 +29,7 @@ Nesta seção, caso o usuário tenha escolhido o número 1, será realizado o mo
 | *Figura 3: Monitoramento.* | 
 
 ### Exibição de Logs
-Caso o usuário tenha escolhido a opção 2, será exibido os Logs do monitoramento. Esses Logs estão no arquivo `logs.txt`, o qual é escrito a medido que é realizado o moniroramento.
+Caso o usuário tenha escolhido a opção 2, será exibido os Logs do monitoramento. Esses Logs estão no arquivo `logs.txt`, o qual é escrito a medida que é realizado o monitoramento.
 
 ![](https://github.com/andersonleitee/Go/blob/main/prints/Arquivo_Logs.png?raw=true) 
 |:--:| 
